@@ -130,11 +130,15 @@ var ContextMenu = function(blueprint3d) {
   }
 
   function resize() {
-    selectedItem.resize(
-      inToCm($("#item-height").val()),
-      inToCm($("#item-width").val()),
-      inToCm($("#item-depth").val())
-    );
+	  try {
+	    selectedItem.resize(
+	      inToCm($("#item-height").val()),
+	      inToCm($("#item-width").val()),
+	      inToCm($("#item-depth").val())
+	    );
+	  } catch (e) {
+		  alert(e.message);
+	  }
   }
 
   function initResize() {

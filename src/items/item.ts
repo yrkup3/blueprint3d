@@ -117,11 +117,14 @@ module BP3D.Items {
       var x = width / this.getWidth();
       var y = height / this.getHeight();
       var z = depth / this.getDepth();
+      if (x < 0 || y < 0 || z < 0) {
+        throw new Error('Invalid scale: ' + x + 'x' + y +  'x' + z + '');
+      }
       this.setScale(x, y, z);
     }
 
     /** */
-    public setScale(x: number, y: number, z: number) {
+    protected setScale(x: number, y: number, z: number) {
       var scaleVec = new THREE.Vector3(x, y, z);
       this.halfSize.multiply(scaleVec);
       scaleVec.multiply(this.scale)
